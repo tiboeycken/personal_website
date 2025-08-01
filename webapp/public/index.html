@@ -2,334 +2,219 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
-
-  <title>Tibo Eycken - Personal CV</title>
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="./assets/css/fontawesome.css" />
-  <link rel="stylesheet" href="./assets/css/templatemo-style.css" />
-  <link rel="stylesheet" href="./assets/css/owl.css" />
-  <link rel="stylesheet" href="./assets/css/lightbox.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tibo Eycken - CV</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Inter:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
-  <div id="page-wraper">
-    <!-- Sidebar Menu -->
-    <div class="responsive-nav">
-      <i class="fa fa-bars" id="menu-toggle"></i>
-      <div id="menu" class="menu">
-        <i class="fa fa-times" id="menu-close"></i>
-        <div class="container">
-          <div class="image">
-            <a href="#"><img src="assets/images/profile_picture.jpg" alt="" /></a>
-          </div>
-          <div class="author-content">
-            <h4>Tibo Eycken</h4>
-            <span>Student System & Network Administration</span>
-          </div>
-          <nav class="main-nav" role="navigation">
-            <ul class="main-menu">
-              <li><a href="#section1">About Me</a></li>
-              <li><a href="#section2">What I’m good at</a></li>
-              <li><a href="#section3">Projects & Experiences</a></li>
-            </ul>
-          </nav>
-          <div class="social-network">
-            <ul class="soial-icons">
-              <li>
-                <a href="https://www.linkedin.com/in/tibo-eycken-b81aaa1a3"><i class="fa fa-linkedin"></i></a>
-              </li>
-              <li>
-                <a href="https://github.com/tiboeycken"><i class="fa fa-github"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <header>
+    <img src="./assets/images/profile_picture.jpg" alt="Tibo Eycken" class="profile-pic" />
+    <h1>Tibo Eycken</h1>
+    <div class="short-intro" id="short-intro">Student Applied Computer Science</div>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/tibo-eycken-b81aaa1a3" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/tiboeycken" target="_blank"><i class="fab fa-github"></i></a>
     </div>
+  </header>
 
-    <section class="section about-me" data-section="section1">
-      <div class="container">
-        <div class="section-heading">
-          <h2>About Me</h2>
-          <div class="line-dec"></div>
-          <span>Passionate student in System & Network Administration with a strong focus on cloud infrastructure,
-            cybersecurity, and IT operations.</span>
+  <main>
+    <section id="about">
+      <h2>About This Website</h2>
+      <div class="about">
+        <div class="about-text">
+          <p>Hey there! I wanted to do something a little different with this portfolio — though not <em>too</em>
+            different, because let’s be honest, you’ve probably seen your fair share of sites like this.</p>
+
+          <p>But here’s where it stands out: I didn’t just build this site — I automated its whole deployment. One
+            script sets up a Google Cloud environment, links it to a GitHub repo, and configures everything to
+            auto-deploy to Cloud Run on every push. It scales to zero when idle, updates itself, and stays friendly to
+            my wallet. If you're curious, the code’s on my <a href="https://github.com/tiboeycken" target="_blank"
+              style="color: var(--accent); font-weight: bold;">GitHub</a>.</p>
+
+          <p>This site is where I share my journey studying Applied Computer Science, along with my skills,
+            certifications, and projects that reflect what I’ve been learning.</p>
+
+          <p>My goal? To build reliable, secure cloud systems, help people understand them, and maybe have a little fun
+            with it along the way.</p>
+
+          <p>Feel free to poke around, check out my work, and say hi via the social links above!</p>
         </div>
-        <div class="left-image-post">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="left-image">
-                <img src="assets/images/left-image.jpg" alt="" />
+
+      </div>
+    </section>
+
+
+
+    <section id="about-me">
+      <h2>About Me</h2>
+      <div class="about">
+        <div class="about-text">
+          <p>
+            I think it's best if I start off by introducing myself. My name is Tibo Eycken and I am a <span
+              id="age"></span> year old living in Antwerp.
+          </p>
+          <p>
+            I am currently studying Applied Computer Science at Karel de Grote Hogeschool with a focus on System and
+            Network administration. I
+            like scripting, floating around in the cloud, and occasionally screaming at routers.
+          </p>
+          <p>
+            When I’m not sitting behind a desk, I like taking my dog for walks, spending time with friends, and visiting
+            family in Norway — something I try to do at least once a year. I’m a big fan of the country and am even
+            learning a
+            bit of the language myself.
+          </p>
+          <p>
+            (Here are some pictures I took while there! --->)
+          </p>
+        </div>
+        <div class="about-image-slider">
+          <button class="nav-btn" id="prevBtn" aria-label="Previous Image">&#8592;</button>
+          <img id="aboutImage" src="./assets/images/Norway/IMG_1655.jpg" alt="Lake" />
+          <button class="nav-btn" id="nextBtn" aria-label="Next Image">&#8594;</button>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="section-intro">
+        <p>A mix of things I’ve learned through coursework, hands-on projects, and curiosity. Some technical, some human
+          — all useful.</p>
+      </div>
+      <div class="skills">
+        <div class="skill-card">
+          <i class="fas fa-server"></i>
+          <h3>System Administration</h3>
+          <p>Experienced with bash, PowerShell, Active Directory and IT infrastructure across Windows and Linux.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-cloud"></i>
+          <h3>Cloud Infrastructure</h3>
+          <p>Google Cloud Certified. CI/CD automation, Kubernetes, Cloud Storage, Identity & Access Management.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-code"></i>
+          <h3>Programming</h3>
+          <p>Java, JavaFX, Python, HTML, CSS, JS, .NET, C, C#, SQL, PostgreSQL.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-toolbox"></i>
+          <h3>Extra's</h3>
+          <p>Git, Docker, GitLab, Networking, Pub/Sub</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-comments"></i>
+          <h3>Communication</h3>
+          <p>Strong communicator, team player — and never afraid to ask the “dumb” questions</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <h2>Certificates</h2>
+      <div class="section-intro">
+        <p>Proof that I’ve been putting in the work. These certifications back up the cloud, networking, and security
+          skills I’ve been sharpening.</p>
+
+      </div>
+      <div class="skills">
+        <div class="skill-card">
+          <i class="fas fa-certificate"></i>
+          <h3>Associate Cloud Engineer</h3>
+          <p>I got my first Certification with Google and am now a Certified Associate Cloud Engineer! - Verify via <a
+              href="https://www.credly.com/badges/bd2fcb68-74c1-4722-8644-b04951654d2a/public_url" target="_blank"
+              style="color: var(--accent); font-weight: bold;">Credly</a>.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-hourglass-half"></i>
+          <h3>Professional Cloud Architect</h3>
+          <p><em>Coming soon:</em> Currently preparing for this certification.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="section-intro">
+        <p>Here are a few things I’ve built — for school, for fun, and to learn. You can find them all (and probably a
+          few broken experiments) on my <a href="https://github.com/tiboeycken" target="_blank"
+            style="color: var(--accent); font-weight: bold;">GitHub</a>.</p>
+      </div>
+
+      <div class="projects">
+        <div class="project-card-wrapper" onclick="this.classList.toggle('flipped')">
+          <div class="project-card-inner">
+            <div class="project-card-front">
+              <img src="./assets/images/board.jpg" alt="Cloud Project" />
+              <div class="project-card-body">
+                <h4>Enterprise Cloud Infrastructure</h4>
+                <span>Bash, Google Cloud, Redis, CI/CD, School</span>
+                <div class="flip-arrow">More</div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="right-text">
-                <h4>My Journey in IT Infrastructure</h4>
-                <p>
-                  I am a dedicated student at Karel de Grote Hogeschool in Antwerp, pursuing System & Network
-                  Administration.
-                  My passion lies in cloud infrastructure, cybersecurity, and IT operations. I love learning new things
-                  and see myself
-                  as a realistic but optimistic person who always shoots for the stars.
-                </p>
-                <div class="white-button">
-                  <a href="#section2">View My Skills</a>
-                </div>
-              </div>
+            <div class="project-card-back">
+              <p>Set up a fully automated Google Cloud environment, including load balancing, CI/CD pipelines, Redis
+                caching, and a lot more.</p>
+              <a href="https://github.com/tiboeycken" target="_blank" style="color: var(--accent)"><i
+                  class="fab fa-github"></i></a>
+              <div class="flip-arrow">Less </div>
             </div>
           </div>
         </div>
-        <div class="right-image-post">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="left-text">
-                <h4>Career Goals & Interests</h4>
-                <p>
-                  I aspire to work in cloud infrastructure, system administration, or cybersecurity within the IT and
-                  consultancy sector.
-                  I'm particularly interested in cloud technologies and security. I enjoy traveling, especially to
-                  Norway (visited almost 10 times in 3 years),
-                  camping, and hiking. I'm a Google Cloud Certified Associate Cloud Engineer since July 2025.
-                </p>
-                <div class="white-button">
-                  <a href="#section3">View My Work</a>
-                </div>
+
+        <div class="project-card-wrapper" onclick="this.classList.toggle('flipped')">
+          <div class="project-card-inner">
+            <div class="project-card-front">
+              <img src="./assets/images/servers.jpg" alt="Database Project" />
+              <div class="project-card-body">
+                <h4>Automated Cloud Run env</h4>
+                <span>Bash, Google Cloud, Automation, Personal</span>
+                <div class="flip-arrow">More</div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="right-image">
-                <img src="assets/images/right-image.jpg" alt="" />
+            <div class="project-card-back">
+              <p>A handy script I created that fully automates deployment of simple applications to Cloud Run with one
+                command.</p>
+              <a href="https://github.com/tiboeycken" target="_blank" style="color: var(--accent)"><i
+                  class="fab fa-github"></i></a>
+              <div class="flip-arrow">Less</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card-wrapper" onclick="this.classList.toggle('flipped')">
+          <div class="project-card-inner">
+            <div class="project-card-front">
+              <img src="./assets/images/student.jpg" alt="Admin Project" />
+              <div class="project-card-body">
+                <h4>Big Data Graphs</h4>
+                <span>Neo4j, Python, NoSQL, Datawarehousing, School</span>
+                <div class="flip-arrow">More</div>
               </div>
+            </div>
+            <div class="project-card-back">
+              <p>In this project, we learned how to create and work with Neo4j graph databases to analyze large
+                datasets.</p>
+              <a href="https://github.com/tiboeycken" target="_blank" style="color: var(--accent)"><i
+                  class="fab fa-github"></i></a>
+              <div class="flip-arrow">Less</div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="section my-services" data-section="section2">
-      <div class="container">
-        <div class="section-heading">
-          <h2>What I’m good at?</h2>
-          <div class="line-dec"></div>
-          <span>Curabitur leo felis, rutrum vitae varius eu, malesuada a tortor.
-            Vestibulum congue leo et tellus aliquam, eu viverra nulla semper.
-            Nullam eu faucibus diam. Donec eget massa ante.</span>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="service-item">
-              <div class="first-service-icon service-icon"></div>
-              <h4>System Administration</h4>
-              <p>
-                Proficient in bash, PowerShell, and system administration tools. Strong understanding of IT
-                infrastructure,
-                network management, and system security. Experience with both Windows and Linux environments.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="service-item">
-              <div class="second-service-icon service-icon"></div>
-              <h4>Cloud Infrastructure</h4>
-              <p>
-                Google Cloud Certified Associate Cloud Engineer with hands-on experience in CI/CD automation,
-                load balancing, managed instance groups, and cloud storage. Experience with Redis caching,
-                Cloud SQL, and VPC networking.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="service-item">
-              <div class="third-service-icon service-icon"></div>
-              <h4>Programming & Databases</h4>
-              <p>
-                Experience with Java, .NET, C, C#, and SQL. Knowledge of PostgreSQL and NeoDB.
-                Understanding of database management and data modeling. Experience with both
-                relational and graph databases.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="service-item">
-              <div class="fourth-service-icon service-icon"></div>
-              <h4>Cybersecurity & Monitoring</h4>
-              <p>
-                Strong interest in cybersecurity and IT security practices. Experience with health checks,
-                monitoring systems, and firewall configuration. Knowledge of backup and restore processes
-                and security best practices for cloud environments.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section my-work" data-section="section3">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Projects & Experiences</h2>
-          <div class="line-dec"></div>
-          <span>Here are some of my academic projects and experiences that showcase my technical skills and
-            problem-solving abilities.</span>
-        </div>
-        <div class="row">
-          <div class="isotope-wrapper">
-            <form class="isotope-toolbar">
-              <label><input type="radio" data-type="*" checked="" name="isotope-filter" />
-                <span>all</span></label>
-              <label><input type="radio" data-type="cloud" name="isotope-filter" />
-                <span>cloud</span></label>
-              <label><input type="radio" data-type="infrastructure" name="isotope-filter" />
-                <span>infrastructure</span></label>
-              <label><input type="radio" data-type="academic" name="isotope-filter" />
-                <span>academic</span></label>
-            </form>
-            <div class="isotope-box">
-              <div class="isotope-item" data-type="cloud">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-01.jpg" alt="Cloud Infrastructure Project" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-01.jpg" data-lightbox="image-1"
-                      data-title="Enterprise Cloud Infrastructure"><i class="fa fa-search"></i></a>
-                    <h4>Enterprise Cloud Infrastructure</h4>
-                    <span>Google Cloud, CI/CD, Load Balancing, Redis</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div class="isotope-item" data-type="infrastructure">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-02.jpg" alt="System Administration" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-02.jpg" data-lightbox="image-1"
-                      data-title="System Administration & Networking"><i class="fa fa-search"></i></a>
-                    <h4>System Administration</h4>
-                    <span>Bash, PowerShell, Network Management</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div class="isotope-item" data-type="cloud">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-03.jpg" alt="Database Management" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-03.jpg" data-lightbox="image-1" data-title="Database Management"><i
-                        class="fa fa-search"></i></a>
-                    <h4>Database Management</h4>
-                    <span>PostgreSQL, NeoDB, SQL, Data Modeling</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div class="isotope-item" data-type="infrastructure">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-04.jpg" alt="Security & Monitoring" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-04.jpg" data-lightbox="image-1"
-                      data-title="Security & Monitoring Systems"><i class="fa fa-search"></i></a>
-                    <h4>Security & Monitoring</h4>
-                    <span>Firewall Configuration, Health Checks, Backup</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div class="isotope-item" data-type="academic">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-05.jpg" alt="Academic Project" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-05.jpg" data-lightbox="image-1" data-title="Academic Excellence"><i
-                        class="fa fa-search"></i></a>
-                    <h4>Top 4 Academic Project</h4>
-                    <span>Selected from 27 teams, presented to real company</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <div class="isotope-item" data-type="cloud">
-                <figure class="snip1321">
-                  <img src="assets/images/portfolio-06.jpg" alt="Google Cloud Certification" />
-                  <figcaption>
-                    <a href="assets/images/portfolio-06.jpg" data-lightbox="image-1"
-                      data-title="Google Cloud Certified"><i class="fa fa-search"></i></a>
-                    <h4>Google Cloud Certification</h4>
-                    <span>Associate Cloud Engineer, July 2025</span>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/lightbox.js"></script>
-  <script src="assets/js/custom.js"></script>
-  <script>
-    //according to loftblog tut
-    $(".main-menu li:first").addClass("active");
-
-    var showSection = function showSection(section, isAnimate) {
-      var direction = section.replace(/#/, ""),
-        reqSection = $(".section").filter(
-          '[data-section="' + direction + '"]'
-        ),
-        reqSectionPos = reqSection.offset().top - 0;
-
-      if (isAnimate) {
-        $("body, html").animate(
-          {
-            scrollTop: reqSectionPos
-          },
-          800
-        );
-      } else {
-        $("body, html").scrollTop(reqSectionPos);
-      }
-    };
-
-    var checkSection = function checkSection() {
-      $(".section").each(function () {
-        var $this = $(this),
-          topEdge = $this.offset().top - 80,
-          bottomEdge = topEdge + $this.height(),
-          wScroll = $(window).scrollTop();
-        if (topEdge < wScroll && bottomEdge > wScroll) {
-          var currentId = $this.data("section"),
-            reqLink = $("a").filter("[href*=\\#" + currentId + "]");
-          reqLink
-            .closest("li")
-            .addClass("active")
-            .siblings()
-            .removeClass("active");
-        }
-      });
-    };
-
-    $(".main-menu").on("click", "a", function (e) {
-      e.preventDefault();
-      showSection($(this).attr("href"), true);
-    });
-
-    $(window).scroll(function () {
-      checkSection();
-    });
-  </script>
+  </main>
 </body>
 
 </html>
+
+<script src="./assets/js/script.js"></script>

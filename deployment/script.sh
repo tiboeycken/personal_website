@@ -44,6 +44,7 @@ choose_project() {
         new_project
     else
         PROJECT_ID=${PROJECTS[$INDEX]}
+        gcloud config set project $PROJECT_ID
     fi
 }
 
@@ -52,6 +53,7 @@ new_project() {
 #    gcloud projects create "$PROJECT_NAME"
     $PROJECT_ID="$PROJECT_NAME"
     echo "Project created: $PROJECT_ID"
+    gcloud config set project $PROJECT_ID
 }
 
 choose_billing_account() {
@@ -100,48 +102,70 @@ get_project_number(){
 create_and_set_custom_role(){
     local PROJECT_NUMBER=$(get_project_number "$PROJECT_ID")
     local SERVICE_ACCOUNT_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-    local PERMISSIONS_FOR_GCP_SA_CB="secretmanager.secrets.create,secretmanager.secrets.setIamPolicy"
-    local PERMISSIONS_FOR_CB="run.admin,iam.serviceAccountUser"
 
-    gcloud iam roles create GCPSACBCustomRole \
+    # Enable required APIs
+    gcloud services enable secretmanager.googleapis.com cloudbuild.googleapis.com 
+
+    sleep 10
+
+    CUSTOMROLEGCPSA="customRoleGCPSA"
+    CUSTOMROLECB="customeRoleCB"
+    gcloud iam roles create $CUSTOMROLEGCPSA \
         --project="$PROJECT_ID" \
-        --title="Custom Role for GCP SA CB Service Account" \
-        --permissions="$PERMISSIONS_FOR_GCP_SA_CB" \
+        --title="Custom Role for GCP SA Service Account" \
+        --permissions="secretmanager.secrets.create,secretmanager.secrets.setIamPolicy" \
         --stage=GA
 
-    gcloud iam roles create CB_CustomRole \
+    gcloud iam roles create $CUSTOMROLECB \
         --project="$PROJECT_ID" \
         --title="Custom Role for CB Service Account" \
-        --permissions="$PERMISSIONS_FOR_CB" \
-        --stage=GA 
+        --permissions="run.admin,secretmanager.versions.add" \
+        --stage=GA
 
     gcloud projects add-iam-policy-binding "$PROJECT_ID" \
             --member="serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-cloudbuild.iam.gserviceaccount.com" \
-            --role="projects/$PROJECT_ID/roles/GCPSACBCustomRole" 2>&1 >/dev/null
+            --role="projects/$PROJECT_ID/roles/$CUSTOMROLEGCPSA" 2>&1 >/dev/null
 
     gcloud projects add-iam-policy-binding "$PROJECT_ID" \
         --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
-        --role="projects/$PROJECT_ID/roles/CB_CustomRole" 2>&1 >/dev/null
+        --role="projects/$PROJECT_ID/roles/$CUSTOMROLECB" 2>&1 >/dev/null
 
+    gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+        --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
+        --role="roles/iam.serviceAccountUser"
 
     echo "Custom role created and assigned to $SERVICE_ACCOUNT_EMAIL"
 }
 
 
 link_gh_repo(){
+    # Would be a lot easier if we were to just prompt: https://console.cloud.google.com/cloud-build/triggers
+
     # service-account will need roles   "roles/secretmanager.secrets.setIamPolicy";"roles/secretmanager.secrets.create"
     # Will need the user to authenticate with github 
-    gcloud builds connections create github github_connection --region="$REGION"
+    CONNECTION_NAME="github_connection"
+    GITHUB_REPO="https://github.com/tiboeycken/personal_website.git"
+    gcloud builds connections create github $CONNECTION_NAME --region="$REGION"
+
+    # After this we should create the repo in gcloud
+    gcloud beta builds repositories create personal_website \
+        --region="$REGION" \
+        --connection="$CONNECTION_NAME" \
+        --remote-uri="$GITHUB_REPO"
 }
 
 setup_gcrun_trigger(){
-gcloud builds triggers create \
-  --name="deploy-on-push" \
-  --region="europe-west1" \
-  --repository="projects/PROJECT_ID/locations/europe-west1/connections/github_connection/repositories/personal_website" \
-  --branch-pattern="^main$" \
-  --build-config="cloudbuild.yaml"
+    PN=$(gcloud projects describe ${PROJECT_ID} --format="value(projectNumber)")
+    REPO="tiboeycken-personal_website" # Name of the repo in gcloud -> `gcloud builds repositories list --region=$REGION --connection=$CONNECTION`
 
+    # Correct command - differs from what is stated in the documentation
+    gcloud builds triggers create github \
+        --name="deploy" \
+        --repository="projects/$PROJECT_ID/locations/$REGION/connections/$CONNECTION_NAME/repositories/$REPO" \
+        --branch-pattern="^main$" \
+        --region="$REGION" \
+        --service-account="projects/$PROJECT_ID/serviceAccounts/$PN-compute@developer.gserviceaccount.com" \
+        --build-config="cloudbuild.yaml"
 }
 
 check_gcloud_installed

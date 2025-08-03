@@ -9,7 +9,7 @@ steps:
   args: [
     'run', 'deploy', 'my-service',
     '--image', 'gcr.io/$PROJECT_ID/my-service',
-    '--region', 'YOUR_REGION',
+    '--region', 'europe-west1',
     '--platform', 'managed',
     '--allow-unauthenticated'
   ]

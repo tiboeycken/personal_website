@@ -3,8 +3,6 @@
 PROJECT_ID=""
 BILLING_ACCOUNT_ID=""
 REGION="europe-west1"
-REPO_NAME="personal_website"
-REPO_OWNER="tiboeycken"
 
 APIS_TO_ENABLE=(
     cloudbuild.googleapis.com
@@ -51,7 +49,7 @@ choose_project() {
 new_project() {
     read -p "Project name: " PROJECT_NAME
 #    gcloud projects create "$PROJECT_NAME"
-    $PROJECT_ID="$PROJECT_NAME"
+    PROJECT_ID="$PROJECT_NAME"
     echo "Project created: $PROJECT_ID"
     gcloud config set project $PROJECT_ID
 }
@@ -134,18 +132,24 @@ create_and_set_custom_role(){
         --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
         --role="roles/iam.serviceAccountUser"
 
+    gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+        --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
+        --role="roles/cloudbuild.builds.editor"
+
     echo "Custom role created and assigned to $SERVICE_ACCOUNT_EMAIL"
 }
 
 
 link_gh_repo(){
-    # Would be a lot easier if we were to just prompt: https://console.cloud.google.com/cloud-build/triggers
-
     # service-account will need roles   "roles/secretmanager.secrets.setIamPolicy";"roles/secretmanager.secrets.create"
     # Will need the user to authenticate with github 
     CONNECTION_NAME="github_connection"
     GITHUB_REPO="https://github.com/tiboeycken/personal_website.git"
     gcloud builds connections create github $CONNECTION_NAME --region="$REGION"
+
+    echo "First choose your google account associated with the cloud project, then log into github where the repo is located."
+   
+    # Guessing I need to put a loop here to check if it has been properly linked or not
 
     # After this we should create the repo in gcloud
     gcloud beta builds repositories create personal_website \

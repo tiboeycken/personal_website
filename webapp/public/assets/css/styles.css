@@ -131,8 +131,8 @@ h2 {
     box-shadow: 0 4px 16px var(--accent);
     max-width: 300px;
     height: auto;
-    flex-shrink: 0;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .nav-btn {
@@ -303,5 +303,38 @@ h2 {
 @media (max-width: 700px) {
     .about {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-image-slider {
+        position: relative;
+        display: block;
+        max-width: 100%;
+        margin-top: 1rem;
+    }
+
+    .about-image-slider img {
+        width: 100%;
+        display: block;
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--card-glass);
+        border-radius: 50%;
+        padding: 0.4rem 0.7rem;
+        font-size: 1.4rem;
+        z-index: 2;
+    }
+
+    .nav-btn#prevBtn {
+        left: 10px;
+    }
+
+    .nav-btn#nextBtn {
+        right: 10px;
     }
 }

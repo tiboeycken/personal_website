@@ -4,12 +4,24 @@ This script automates the deployment of a personal GitHub repository using **Clo
 
 ## Prerequisites
 
-- Google Cloud SDK (`gcloud`) installed and authenticated.
-- A Google Cloud account with an existing Billing Account.
-- Access to a personal GitHub repo.
+- [Google Cloud SDK (gcloud)](https://cloud.google.com/sdk/docs/install) installed and authenticated.- A Google Cloud account with an existing Billing Account.
+- Access to a personal GitHub repo containing:
+    - Your application code
+    - A deployment/ folder with necessary deployment configs
+
+## 📁 Project Structure Requirement
+Your GitHub repository **must include** the following structure:
+```bash
+your-repo/
+├── deployment/
+│   ├── cloudbuild.yaml     # Cloud Build configuration
+│   ├── Dockerfile          # Dockerfile used by Cloud Build
+└── webapp/                 # Static files to be served
+```
+> ⚠️ Cloud Build expects both `cloudbuild.yaml` and `Dockerfile` in the `deployment/` folder.
 
 ## 🚀 How to Run
-
+Run the script:
 ```bash
 cd deployment
 ./deploy.sh
@@ -51,17 +63,10 @@ cd deployment
     - Pushes to Google Container Registry
     - Deploys it to Cloud Run
 
-## 📁 Project Structure
-```bash
-.
-├── deployment/
-│   ├── deploy.sh           # Main deployment script
-│   ├── Dockerfile          # Dockerfile used by Cloud Build
-│   ├── cloudbuild.yaml     # Cloud Build configuration
-│   └── README.md           # You're here!
-└── webapp/                 # Static files to be served
-```
+## 🧹 Cleanup
 
-## 📝 Notes
-- This script is opinionated and tailored for static websites, but can be modified for other use cases.
-- The script assumes a basic NGINX-based Docker deployment. You can customize the Dockerfile and cloudbuild.yaml for other frameworks (e.g., Node.js, Flask, etc.).
+To clean up the resources (project, services, roles), you will need to manually:
+
+- Delete the Cloud Run service
+- Remove the Cloud Build trigger
+- Delete the GCP project (optional)

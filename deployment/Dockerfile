@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Copy the webapp files to nginx's default serving directory
-COPY webapp/public /usr/share/nginx/html/
+COPY webapp /usr/share/nginx/html/
 
 # Copy a custom nginx configuration (optional, for better performance)
 COPY deployment/nginx.conf /etc/nginx/nginx.conf

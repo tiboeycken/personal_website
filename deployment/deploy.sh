@@ -135,7 +135,7 @@ setup_build_trigger(){
         --branch-pattern="^main$" \
         --region="$REGION" \
         --service-account="projects/$PROJECT_ID/serviceAccounts/cloud-build-deployer@$PROJECT_ID.iam.gserviceaccount.com" \
-        --build-config="cloudbuild.yaml"
+        --build-config="deployment/cloudbuild.yaml"
 
     gcloud builds triggers run deploy --region="$REGION" --branch="main"
 }

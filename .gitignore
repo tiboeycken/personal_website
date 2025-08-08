@@ -5,10 +5,8 @@
 # Documentation
 README.md
 
-# Development files
-prepros-6.config
-
 # Deploy files
+deployment/destroy.sh
 plan.md
 deployment/images/*
 simple_method.md

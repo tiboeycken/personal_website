@@ -2,9 +2,6 @@
 .git
 .gitignore
 
-# Documentation
-README.md
-
 # Deploy files
 deployment/destroy.sh
 plan.md

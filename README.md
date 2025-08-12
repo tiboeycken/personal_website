@@ -1,28 +1,29 @@
-# 🚀 Project Title
+# 🚀 Automated Cloud Run deployment
 
-> A short one-liner about what the project does or solves.
+Scripts to deploy your GitHub repository to Cloud Run using gcloud CLI.
 
 ---
 
 ## 📌 Overview
 
-Brief description of what the project is, why you made it, and what problems it solves.
+This repository contains both a bash and powershell script which will connect your GitHub repository to Google Cloud Build and deploy it to Cloud Run.
 
 ---
 
 ## ✨ Features
 
-- 🔧 Feature 1 (e.g., Automated deployment to Cloud Run)
-- ⚙️ Feature 2 (e.g., CI/CD setup with GitHub Actions)
-- ☁️ Feature 3 (e.g., Scales to 0 on idle to save costs)
+- 🔧 Automated setup of GCP project, billing link, APIs, and service accounts
+- ⚙️ Creates a Cloud Build trigger linked to your GitHub repository
+- ☁️ Deploys to Cloud Run with auto-scaling to 0 for cost savings
+- 🖥️ Works with both Bash (Linux/Mac) and PowerShell (Windows)
 
 ---
 
 ## 🛠️ Technologies & Tools
 
-- Language(s): `Python`, `Bash`, `Java`, etc.
-- Tools: `Docker`, `GitHub`, `Google Cloud`, `Pub/Sub`, etc.
-- Services: `Cloud Run`, `Cloud Build`, `IAM`, etc.
+- Languages: Bash, PowerShell
+- Tools: Docker, Git, Google Cloud SDK
+- Services: Cloud Run, Cloud Build, IAM, Secret Manager
 
 ---
 
@@ -37,38 +38,21 @@ cd personal_website
 bash ./deployment/script.sh
 ```
 
-> Note: Add any environment variables or API keys needed to run locally.
+> Important: Your GitHub repository must include:
+>-    deployment/cloudbuild.yaml
+>-   deployment/Dockerfile
+>-   Any application files (e.g., webapp/) required by the Docker build.
+>-   These files are sent to Google Cloud Build when triggered.
 
 ---
 
-## 🔄 Deployment
+## 🔄 Deployment Workflow
 
-Explain how deployment works. Example:
-
-This project uses GitHub Actions to automatically deploy to Google Cloud Run on every push to `main`.
-
----
-
-## 📸 Screenshots
-
-| Description | Screenshot |
-|-------------|------------|
-| Home Page   | ![screenshot](./images/home.png) |
-| Feature X   | ![screenshot](./images/feature-x.png) |
-
----
-
-## 🧠 What I Learned / Focus Points
-
-- Briefly explain what you learned while building this
-- Any new tools or concepts explored
-
----
-
-## 🌐 Live Demo
-
-Coming Soon //
-[🔗 Click to View](https://your-project-url.com)
+1. Script creates/links your GCP project & billing account
+2. Enables required APIs (run.googleapis.com, cloudbuild.googleapis.com, etc.)
+3. Creates and configures a cloud-build-deployer service account
+4. Connects your GitHub repo to Google Cloud Build
+5. Sets up a trigger for automatic deployment on push to main
 
 ---
 
@@ -76,19 +60,18 @@ Coming Soon //
 
 ```text
 .
-├── /src
-│   ├── main.py
-│   └── ...
-├── setup.sh
-├── README.md
-└── ...
+├── deployment/
+│   ├── deploy.sh          # Bash deployment script
+│   ├── deploy.ps1         # PowerShell deployment script
+│   ├── cloudbuild.yaml    # Cloud Build configuration
+│   ├── Dockerfile         # Container build definition
+│   ├── nginx.conf         # Nginx config
+│   └── README.md          # More specific run instructions
+├── webapp/                # Application files served by Nginx
+├── .gitignore             # Files ignored by git
+└── README.md
+
 ```
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
 
 ---
 

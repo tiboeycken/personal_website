@@ -23,7 +23,7 @@ your-repo/
 ## 🚀 How to Run
 Run the script:
 ```bash
-cd deployment
+cd deployment/scripts
 ./deploy.sh
 ```
 

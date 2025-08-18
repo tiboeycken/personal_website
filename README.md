@@ -1,27 +1,34 @@
 # 🚀 Automated Cloud Run deployment
 
-Scripts to deploy your GitHub repository to Cloud Run using gcloud CLI.
+This repository provides multiple ways to deploy your GitHub repository to Google Cloud Run:
+- Using Terraform to automate project setup
+- Using Bash/PowerShell scripts
 
 ---
 
 ## 📌 Overview
 
-This repository contains both a bash and powershell script which will connect your GitHub repository to Google Cloud Build and deploy it to Cloud Run.
+- Automates GCP project creation or selection, billing setup, API enablement, and service accounts.
+- Integrates your GitHub repository with Google Cloud Build.
+- Deploys your application to Cloud Run with auto-scaling to 0 to minimize costs.
+- Supports both Linux/macOS (Bash) and Windows (PowerShell).
 
 ---
 
 ## ✨ Features
 
-- 🔧 Automated setup of GCP project, billing link, APIs, and service accounts
-- ⚙️ Creates a Cloud Build trigger linked to your GitHub repository
-- ☁️ Deploys to Cloud Run with auto-scaling to 0 for cost savings
-- 🖥️ Works with both Bash (Linux/Mac) and PowerShell (Windows)
+- ✅ Full GCP project automation with Terraform
+- ✅ Cloud Build triggers connected to GitHub repository
+- ✅ Automatic Docker build & deployment to Cloud Run
+- ✅ Secret management using Secret Manager for GitHub PAT
+- ✅ Supports both Bash and PowerShell deployment scripts
+- ✅ Auto-scaling Cloud Run services
 
 ---
 
 ## 🛠️ Technologies & Tools
 
-- Languages: Bash, PowerShell
+- Languages: Bash, PowerShell, Terraform
 - Tools: Docker, Git, Google Cloud SDK
 - Services: Cloud Run, Cloud Build, IAM, Secret Manager
 
@@ -29,15 +36,41 @@ This repository contains both a bash and powershell script which will connect yo
 
 ## 📦 Setup & Installation
 
+1. CLone the Repository
 ```bash
 # Clone the repository
 git clone https://github.com/tiboeycken/personal_website.git
 cd personal_website
-
-# Run setup script or follow manual steps
-bash ./deployment/script.sh
 ```
 
+2a. Terraform Deployment
+Terraform automates the full setup:
+1. Prepare a GitHub Personal Access Token (PAT) and save it as my-github-token.txt in deployment/terraform.
+2. Create a terraform.tfvars file in deployment/terraform:
+
+```bash
+billing_account            = "<BILLING_ACCOUNT_ID>"
+project                    = "<PROJECT_ID>"
+admin_email                = "<YOUR_GCP_USER_EMAIL>"
+github_repo                = "https://github.com/<user>/<repo>.git"
+github_app_installation_id = "<INSTALLATION_ID>"
+```
+
+```bash
+cd deployment/terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+2b. Bash/PowerShell Scripts
+```bash
+# Bash
+./deployment/scripts/deploy.sh 
+
+# PowerShell
+./deployment/scripts/deploy.ps1
+```
 > Important: Your GitHub repository must include:
 >-    deployment/cloudbuild.yaml
 >-   deployment/Dockerfile
@@ -61,8 +94,15 @@ bash ./deployment/script.sh
 ```text
 .
 ├── deployment/
-│   ├── deploy.sh          # Bash deployment script
-│   ├── deploy.ps1         # PowerShell deployment script
+│   ├── scripts/
+│   │   ├── deploy.sh          # Bash deployment script
+│   │   ├── deploy.ps1         # PowerShell deployment script
+│   ├── terraform/
+│   │   ├── .gitignore
+│   │   ├── main.tf
+│   │   ├── terraform.tfvars
+│   │   ├── variables.tf
+│   │   ├── README.md
 │   ├── cloudbuild.yaml    # Cloud Build configuration
 │   ├── Dockerfile         # Container build definition
 │   ├── nginx.conf         # Nginx config

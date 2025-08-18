@@ -1,0 +1,5 @@
+billing_account            = "<BILLING_ACCOUNT_ID>"
+project                    = "<PROJECT_ID>"
+admin_email                = "<YOUR_GCP_USER_EMAIL>"
+github_repo                = "https://github.com/<user>/<repo>.git"
+github_app_installation_id = "<INSTALLATION_ID>"
